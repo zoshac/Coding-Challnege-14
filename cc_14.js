@@ -43,3 +43,23 @@ createSupportTicket("Preston Grant", "Unable to access account", "High");
 createSupportTicket("Sierra Mist", "Password Expired", "Medium");
 createSupportTicket("Anothony Parker", "Profile not Updated", "Low");
 createSupportTicket("Kristina Thomas", "Payment not processed", "High");
+
+// Task 3 adding arrays 
+function highlightImportantTickets () {
+    const highPriorityTickets = document.querySelectorAll('.priorityLabel');
+    //selects all priority labels with high priority 
+
+    const highPriorityArray = Array.from(highPriorityTickets);
+
+    //styling 
+    highPriorityArray.forEach(priorityLabel => {
+        if (priorityLabel.textContent.includes("High")) {
+            const ticketCard = priorityLabel.closest(".ticketCard");
+            ticketCard.style.border = "4px solid pink";
+            ticketCard.style.backgroundColor = "red";
+            ticketCard.style.fontWeight = "bold";
+        }
+    });
+}
+
+highlightImportantTickets();
