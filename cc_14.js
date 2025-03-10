@@ -90,3 +90,52 @@ ticketContainer.addEventListener("click", function (event) {
     }
 }); 
 
+// Task 5 Inline editing 
+document.querySelectorAll('.ticketCard').forEach(ticket => {
+    ticket.addEventListener('dblclick', function () {
+        const name = ticket.querySelector('.ticket-title');
+        const issue = ticket.querySelector('.ticket-description');
+        const priority = ticket.querySelector('.priorityLabel');
+
+        // input fields 
+        const nameInput = document.createElement('input');
+        nameInput.value = name.textContent;
+
+        const issueInput = document.createElement('input');
+        issueInput.value = issue.textContent;
+
+        const priorityInput = document.createElement('input');
+        priorityInput.value = priority.textContent.replace("Priority: ", "");
+
+        // replacing static text
+        name.replaceWith(nameInput);
+        issue.replaceWith(issueInput);
+        priority.replaceWith(priorityInput);
+
+        // save button
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Save';
+        ticket.appendChild(saveButton);
+
+        saveButton.addEventListener('click', function () {
+            const updatedName = document.createElement('h3');
+            updatedName.classList.add('ticket-title');
+            updatedName.textContent = nameInput.value;
+
+            const updatedIssue = document.createElement('p');
+            updatedIssue.classList.add('ticket-description');
+            updatedIssue.textContent = issueInput.value;
+
+            const updatedPriority = document.createElement('p');
+            updatedPriority.classList.add('priorityLabel');
+            updatedPriority.textContent = "Priority: " + priorityInput.value;
+
+    
+            nameInput.replaceWith(updatedName);
+            issueInput.replaceWith(updatedIssue);
+            priorityInput.replaceWith(updatedPriority);
+            saveButton.remove();
+             // removing save button
+        });
+    });
+});
