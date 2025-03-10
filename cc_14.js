@@ -63,3 +63,30 @@ function highlightImportantTickets () {
 }
 
 highlightImportantTickets();
+
+//Task 4 Ticket Resoloution 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const ticketConatiner = document.getElementById("ticketContainer");
+
+    document.querySelectorAll(".resolve-btn").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const ticketCard = this.closest(".ticketCard");
+            if (ticketCard) {
+                ticketCard.remolve();
+                console.log("Ticket issue resolved");
+            }
+        })
+    });
+});
+
+// event listener added to show message when is clicked 
+ticketContainer.addEventListener("click", function (event) { 
+    const clickedTicket = event.target.closest(".ticketCard");
+    if (clickedTicket) {
+        console.log("Ticket clicked:" + clickedTicket.querySelector("h4").textContent);
+    }
+}); 
+
